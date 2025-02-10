@@ -1,0 +1,212 @@
+﻿eva 1 practica 4 create table
+Downloading pip-25.0-py3-none-any.whl (1.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 18.0 MB/s eta 0:00:00
+Downloading wheel-0.45.1-py3-none-any.whl (72 kB)
+Installing collected packages: wheel, pip
+  Attempting uninstall: pip
+    Found existing installation: pip 23.1.2
+    Uninstalling pip-23.1.2:
+      Successfully uninstalled pip-23.1.2
+Successfully installed pip-25.0 wheel-0.45.1
+lechus@MacBook-Air-de-Lechus ~ % pip3 --version
+pip 25.0 from /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/pip (python 3.11)
+lechus@MacBook-Air-de-Lechus ~ % pip3 install numpy
+Collecting numpy
+  Downloading numpy-2.2.2-cp311-cp311-macosx_14_0_arm64.whl.metadata (62 kB)
+Downloading numpy-2.2.2-cp311-cp311-macosx_14_0_arm64.whl (5.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.4/5.4 MB 11.4 MB/s eta 0:00:00
+Installing collected packages: numpy
+Successfully installed numpy-2.2.2
+lechus@MacBook-Air-de-Lechus ~ % python3 -c "import numpy; print(numpy.__version__)"
+2.2.2
+lechus@MacBook-Air-de-Lechus ~ % clear
+lechus@MacBook-Air-de-Lechus ~ % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 51
+Server version: 8.0.27 MySQL Community Server - GPL
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employees          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| tbd_eva1           |
+| world_x            |
++--------------------+
+8 rows in set (0.05 sec)
+mysql> use tbd_eva1
+Database changed
+mysql> create table persona(
+    -> nombre varchar(50),
+    -> apellidos(50)
+    -> ^C
+    -> "C
+    "> "C
+    -> 
+    -> ^c
+    -> 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(50)
+^C
+"C
+"C
+^c' at line 3
+mysql> show tables
+    -> ;
+Empty set (0.00 sec)
+mysql> create table vehiculo(
+    -> marca varchar(20),
+    -> modelo
+    -> varchar (30),
+    -> year int,
+    -> color varchar(20),
+    -> no_serie varchar(17));
+Query OK, 0 rows affected (0.07 sec)
+mysql> show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| vehiculo           |
++--------------------+
+1 row in set (0.00 sec)
+mysql> desc vehiculo;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| marca    | varchar(20) | YES  |     | NULL    |       |
+| modelo   | varchar(30) | YES  |     | NULL    |       |
+| year     | int         | YES  |     | NULL    |       |
+| color    | varchar(20) | YES  |     | NULL    |       |
+| no_serie | varchar(17) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+mysql> show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| vehiculo           |
++--------------------+
+1 row in set (0.00 sec)
+mysql> desc vehiculo;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| marca    | varchar(20) | YES  |     | NULL    |       |
+| modelo   | varchar(30) | YES  |     | NULL    |       |
+| year     | int         | YES  |     | NULL    |       |
+| color    | varchar(20) | YES  |     | NULL    |       |
+| no_serie | varchar(17) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+mysql> insert into vehiculo
+    -> value("Ford","Mustang",1970,"Azul","ASDFASD");
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into vehiculo(marca, modelo)
+    -> value("Chevrolet","Corvette");
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into vehiculo(marca, modelo)
+    -> values("Tesla","S",),("Tesla","E",),("Tesla","X"),("Tesla","Y"),("Tesla","Cybertruck");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '),("Tesla","E",),("Tesla","X"),("Tesla","Y"),("Tesla","Cybertruck")' at line 2
+mysql> values("Tesla","S"),("Tesla","E"),("Tesla","E"),("Tesla","X"),("Tesla","Y"),("Tesla","Cybertruck");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '("Tesla","S"),("Tesla","E"),("Tesla","E"),("Tesla","X"),("Tesla","Y"),("Tesla","' at line 1
+mysql> values("Tesla","S"),("Tesla","E"),("Tesla","X"),("Tesla","Y"),("Tesla","Cybertruck");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '("Tesla","S"),("Tesla","E"),("Tesla","X"),("Tesla","Y"),("Tesla","Cybertruck")' at line 1
+mysql> insert into vehiculo(marca, modelo)
+    -> values ("Tesla","S"),("Tesla","E"),("Tesla","X"),("Tesla","Y"),("Tesla","Cybertruck");
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+mysql> select * from vehiculo;
++-----------+------------+------+-------+----------+
+| marca     | modelo     | year | color | no_serie |
++-----------+------------+------+-------+----------+
+| Ford      | Mustang    | 1970 | Azul  | ASDFASD  |
+| Chevrolet | Corvette   | NULL | NULL  | NULL     |
+| Tesla     | S          | NULL | NULL  | NULL     |
+| Tesla     | E          | NULL | NULL  | NULL     |
+| Tesla     | X          | NULL | NULL  | NULL     |
+| Tesla     | Y          | NULL | NULL  | NULL     |
+| Tesla     | Cybertruck | NULL | NULL  | NULL     |
++-----------+------------+------+-------+----------+
+7 rows in set (0.00 sec)
+mysql> insert into vehiculo(marca, modelo)
+    -> value("Tesla","S");
+Query OK, 1 row affected (0.01 sec)
+mysql> select * from vehiculo;
++-----------+------------+------+-------+----------+
+| marca     | modelo     | year | color | no_serie |
++-----------+------------+------+-------+----------+
+| Ford      | Mustang    | 1970 | Azul  | ASDFASD  |
+| Chevrolet | Corvette   | NULL | NULL  | NULL     |
+| Tesla     | S          | NULL | NULL  | NULL     |
+| Tesla     | E          | NULL | NULL  | NULL     |
+| Tesla     | X          | NULL | NULL  | NULL     |
+| Tesla     | Y          | NULL | NULL  | NULL     |
+| Tesla     | Cybertruck | NULL | NULL  | NULL     |
+| Tesla     | S          | NULL | NULL  | NULL     |
++-----------+------------+------+-------+----------+
+8 rows in set (0.00 sec)
+mysql> select count(*) from vehiculo:
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1
+mysql> select count(*) from vehiculo;
++----------+
+| count(*) |
++----------+
+|        8 |
++----------+
+1 row in set (0.01 sec)
+mysql> insert into vehiculo
+    -> value(null, null, null, null, null);
+Query OK, 1 row affected (0.00 sec)
+mysql> select * from vehiculo;
++-----------+------------+------+-------+----------+
+| marca     | modelo     | year | color | no_serie |
++-----------+------------+------+-------+----------+
+| Ford      | Mustang    | 1970 | Azul  | ASDFASD  |
+| Chevrolet | Corvette   | NULL | NULL  | NULL     |
+| Tesla     | S          | NULL | NULL  | NULL     |
+| Tesla     | E          | NULL | NULL  | NULL     |
+| Tesla     | X          | NULL | NULL  | NULL     |
+| Tesla     | Y          | NULL | NULL  | NULL     |
+| Tesla     | Cybertruck | NULL | NULL  | NULL     |
+| Tesla     | S          | NULL | NULL  | NULL     |
+| NULL      | NULL       | NULL | NULL  | NULL     |
++-----------+------------+------+-------+----------+
+9 rows in set (0.00 sec)
+mysql> create table prueba(
+    -> dato varchar(20) not null);
+ERROR 1049 (42000): Unknown database 'tbd_eva1'
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employees          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world_x            |
++--------------------+
+7 rows in set (0.00 sec)
+mysql> create table prueba( 
+    -> dato varchar(20) not null);
+Query OK, 0 rows affected (0.03 sec)
+mysql> desc prueba;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| dato  | varchar(20) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+1 row in set (0.01 sec)
+mysql>
