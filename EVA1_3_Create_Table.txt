@@ -1,0 +1,139 @@
+﻿eva 1 practica 3  create table
+| sys                |
+| tbd_eva1           |
+| world_x            |
++--------------------+
+8 rows in set (0.01 sec)
+mysql> use tbd_eva1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+mysql> use tbd_eva1
+Database changed
+mysql> create table persona(
+    -> nombre varchar(50),
+    -> apellidos varchar(50):
+    -> apellidos varchar(50);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':
+apellidos varchar(50)' at line 3
+mysql> quit
+Bye
+lechus@MacBook-Air-de-Lechus ~ % clear
+lechus@MacBook-Air-de-Lechus ~ % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 55
+Server version: 8.0.27 MySQL Community Server - GPL
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employees          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| tbd_eva1           |
+| world_x            |
++--------------------+
+8 rows in set (0.01 sec)
+mysql> use tbd_eva1
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+mysql> create table persona(
+    -> nombre varchar(50),
+    -> apellido varchar(50));
+Query OK, 0 rows affected (0.04 sec)
+mysql> show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| persona            |
+| vehiculo           |
++--------------------+
+2 rows in set (0.01 sec)
+mysql> desc persona;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| nombre   | varchar(50) | YES  |     | NULL    |       |
+| apellido | varchar(50) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+mysql> drop persona;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'persona' at line 1
+mysql> drop table persona;
+Query OK, 0 rows affected (0.01 sec)
+mysql> create table persona (nombre varchar(50), apellidos varchar(50), curp varchar(18));
+Query OK, 0 rows affected (0.02 sec)
+mysql> show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| persona            |
+| vehiculo           |
++--------------------+
+2 rows in set (0.01 sec)
+mysql> desc persona;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| nombre    | varchar(50) | YES  |     | NULL    |       |
+| apellidos | varchar(50) | YES  |     | NULL    |       |
+| curp      | varchar(18) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+mysql> drop database tbd_eva1;
+Query OK, 2 rows affected (0.02 sec)
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employees          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world_x            |
++--------------------+
+7 rows in set (0.00 sec)
+mysql> create database tbd_eva1;
+Query OK, 1 row affected (0.00 sec)
+mysql> use tbd_eva1;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employees          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| tbd_eva1           |
+| world_x            |
++--------------------+
+8 rows in set (0.00 sec)
+mysql> create table persona( nombre varchar(50), apellidos varchar(50), curp varchar(18));
+Query OK, 0 rows affected (0.02 sec)
+mysql> desc persona;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| nombre    | varchar(50) | YES  |     | NULL    |       |
+| apellidos | varchar(50) | YES  |     | NULL    |       |
+| curp      | varchar(18) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+mysql>
