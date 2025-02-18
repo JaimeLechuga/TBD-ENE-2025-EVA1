@@ -1,0 +1,142 @@
+﻿EVA1_7_1FN
+Last login: Mon Feb 17 16:04:54 on ttys000
+lechus@MacBook-Air-de-Lechus ~ % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.27 MySQL Community Server - GPL
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employees          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| tbd_eva1           |
+| world_x            |
++--------------------+
+8 rows in set (0.01 sec)
+mysql> use tbd_eva1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| actor              |
+| ciudad             |
+| cliente            |
+| country            |
+| customer           |
+| paises             |
+| persona            |
+| producto           |
+| prueba             |
+| shirts             |
+| vehiculo           |
++--------------------+
+11 rows in set (0.00 sec)
+mysql> create table norma_forma1(
+    -> Roll_no int primary key,
+    -> Name varchar(20) not null,
+    -> Subject varchar(20) not null);
+Query OK, 0 rows affected (0.02 sec)
+mysql> insert into norma_forma1
+    -> values(100, "Faiz", "JAVA"),
+    -> (101, "Rama", "C++"),
+    -> (101, "Rama", "JAVA"),
+    -> (102, "Hitesh", "ANDROID"),
+    -> (103, "Sultan", "C"),
+    -> (103, "Sultan", "C++"),
+    -> (106, "Mahendra", "PHP"));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 8
+mysql> insert into norma_forma1 values(100, "Faiz", "JAVA"), (101, "Rama", "C++"), (101, "Rama", "JAVA"), (102, "Hitesh", "ANDROID"), (103, "Sultan", "C"), (103, "Sultan", "C++"));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> insert into norma_forma1 values(100, "Faiz", "JAVA")
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into norma_forma1 values(101, "Rama", "C++");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into norma_forma1 values(101, "Rama", "JAVA");
+ERROR 1062 (23000): Duplicate entry '101' for key 'norma_forma1.PRIMARY'
+mysql> drop table norma_forma1;
+Query OK, 0 rows affected (0.01 sec)
+mysql> create table norma_forma1
+    -> (
+    -> Roll_no int,
+    -> Name varchar(20) not null,
+    -> Subject varchar(20) not null);
+Query OK, 0 rows affected (0.01 sec)
+mysql> insert into norma_forma1(
+    -> values(100, "Faiz", "JAVA"),
+    ->     -> (101, "Rama", "C++"),
+    ->     -> (101, "Rama", "JAVA"),
+    ->     -> (102, "Hitesh", "ANDROID"),
+    ->     -> (103, "Sultan", "C"),
+    ->     -> (103, "Sultan", "C++"),
+    ->     -> (106, "Mahendra", "PHP"));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(100, "Faiz", "JAVA"),
+    -> (101, "Rama", "C++"),
+    -> (101, "Rama", "JAVA")' at line 2
+mysql> insert into norma_forma1(
+    -> values (100, "Faiz", "JAVA");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(100, "Faiz", "JAVA")' at line 2
+mysql> insert into forma_norma1
+    -> values(100, "Faiz", "JAVA");
+ERROR 1146 (42S02): Table 'tbd_eva1.forma_norma1' doesn't exist
+mysql> show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| actor              |
+| ciudad             |
+| cliente            |
+| country            |
+| customer           |
+| norma_forma1       |
+| paises             |
+| persona            |
+| producto           |
+| prueba             |
+| shirts             |
+| vehiculo           |
++--------------------+
+12 rows in set (0.01 sec)
+mysql> insert into norma_forma1
+    -> values (100, "Faiz", "JAVA");
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into norma_forma1 values (101, "Rama", "C++");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into norma_forma1 values (101, "Rama", "JAVA");
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into norma_forma1 values (102, "Hitesh", "ANDROID");
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into norma_forma1 values (103, "Sultan", "C");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into norma_forma1 values (103, "Sultan", "C++");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into norma_forma1 values (106, "Mahendra", "PHP");
+Query OK, 1 row affected (0.01 sec)
+mysql> select * from norma_forma1;
++---------+----------+---------+
+| Roll_no | Name     | Subject |
++---------+----------+---------+
+|     100 | Faiz     | JAVA    |
+|     101 | Rama     | C++     |
+|     101 | Rama     | JAVA    |
+|     102 | Hitesh   | ANDROID |
+|     103 | Sultan   | C       |
+|     103 | Sultan   | C++     |
+|     106 | Mahendra | PHP     |
++---------+----------+---------+
+7 rows in set (0.00 sec)
+mysql>
