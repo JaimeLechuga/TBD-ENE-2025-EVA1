@@ -1,0 +1,97 @@
+﻿EVA1_8_2FN
+| actor              |
+| ciudad             |
+| cliente            |
+| country            |
+| customer           |
+| norma_forma1       |
+| paises             |
+| persona            |
+| producto           |
+| prueba             |
+| shirts             |
+| Students           |
+| vehiculo           |
++--------------------+
+13 rows in set (0.00 sec)
+mysql> drop table Students;
+Query OK, 0 rows affected (0.02 sec)
+mysql> clear
+mysql> quit
+Bye
+lechus@MacBook-Air-de-Lechus ~ % clear
+lechus@MacBook-Air-de-Lechus ~ % mysql -u root -p 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.27 MySQL Community Server - GPL
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> use tbd_eva1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| actor              |
+| ciudad             |
+| cliente            |
+| country            |
+| customer           |
+| norma_forma1       |
+| paises             |
+| persona            |
+| producto           |
+| prueba             |
+| shirts             |
+| vehiculo           |
++--------------------+
+12 rows in set (0.01 sec)
+mysql> create table student(
+    -> idst int not null,
+    -> lastname varchar(50) not null,
+    -> grade int not null);
+Query OK, 0 rows affected (0.02 sec)
+mysql> alter table student add idprof int not null after grade;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| idst     | int         | NO   |     | NULL    |       |
+| lastname | varchar(50) | NO   |     | NULL    |       |
+| grade    | int         | NO   |     | NULL    |       |
+| idprof   | int         | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+mysql> create table professor(
+    -> idprof int not null,
+    -> prof varchar(50));
+Query OK, 0 rows affected (0.01 sec)
+mysql> insert into student 
+    -> values(1, "Mueller", 5, 3);
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into student values(2, "Meier", 4, 2),
+    -> (3, "Tobler", 6, 1);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+mysql> insert into professor
+    -> values(3, "Schmid"),(2, "Borner"),(1, "Bernasconi");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+mysql> select * from student;
++------+----------+-------+--------+
+| idst | lastname | grade | idprof |
++------+----------+-------+--------+
+|    1 | Mueller  |     5 |      3 |
+|    2 | Meier    |     4 |      2 |
+|    3 | Tobler   |     6 |      1 |
++------+----------+-------+--------+
+3 rows in set (0.00 sec)
+mysql>
