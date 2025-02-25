@@ -1,0 +1,158 @@
+﻿EVA1_10_3FN
+ -> job_code varchar(20) not null,
+    -' at line 2
+mysql> create table employee(
+    ->     -> employee_id varchar(20),
+    ->     -> job_code varchar(20),
+    ->     -> state_code int not null);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> employee_id varchar(20),
+    -> job_code varchar(20),
+    -> state_code int n' at line 2
+mysql> create table employee(
+    ->     -> employee_id varchar(20) not null,
+    ->     -> job code varchar(20) not null,
+    ->     -> state code int not null);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-> employee_id varchar(20) not null,
+    -> job code varchar(20) not null,
+    -' at line 2
+mysql> quit
+Bye
+lechus@MacBook-Air-de-Lechus ~ % clear
+lechus@MacBook-Air-de-Lechus ~ % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 25
+Server version: 8.0.27 MySQL Community Server - GPL
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> use tbd_eva1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| actor              |
+| ciudad             |
+| cliente            |
+| country            |
+| customer           |
+| customers          |
+| norma_forma1       |
+| orders             |
+| paises             |
+| persona            |
+| producto           |
+| professor          |
+| prueba             |
+| shirts             |
+| student            |
+| vehiculo           |
++--------------------+
+16 rows in set (0.00 sec)
+mysql> create table employee(
+    -> employee_id varchar(50) not null,
+    -> job_code varchar(50) not null,
+    -> state_code int not null);
+Query OK, 0 rows affected (0.06 sec)
+mysql> alter table employee add name varchar(50) not null after employee_id, addjob varchar(50) not null after job_code, add home_state varchar(50) not null after state_code;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'addjob varchar(50) not null after job_code, add home_state varchar(50) not null ' at line 1
+mysql> alter table employee add name varchar(50) not null after employee_id;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> alter table employee add job varchar(50) not null after job_code;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> alter table employee add home_state varchar(50) not null after state_code
+;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc employee;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| employee_id | varchar(50) | NO   |     | NULL    |       |
+| name        | varchar(50) | NO   |     | NULL    |       |
+| job_code    | varchar(50) | NO   |     | NULL    |       |
+| job         | varchar(50) | NO   |     | NULL    |       |
+| state_code  | int         | NO   |     | NULL    |       |
+| home_state  | varchar(50) | NO   |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+mysql> create table people(
+    -> name varchar(50) not null,
+    -> job varchar(50) not null,
+    -> home_state varchar(50) not null);
+Query OK, 0 rows affected (0.02 sec)
+mysql> insert into employee
+    -> values("E001", "Alice", "J01", "Chef", 26, "Michigan");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into employee values("E001", "Alice", "J02", "Waiter", 26, "Michigan");
+Query OK, 1 row affected (0.01 sec)
+mysql> select * from employee
+    -> ;
++-------------+-------+----------+--------+------------+------------+
+| employee_id | name  | job_code | job    | state_code | home_state |
++-------------+-------+----------+--------+------------+------------+
+| E001        | Alice | J01      | Chef   |         26 | Michigan   |
+| E001        | Alice | J02      | Waiter |         26 | Michigan   |
++-------------+-------+----------+--------+------------+------------+
+2 rows in set (0.00 sec)
+mysql> insert into employee values("E002", "Bob", "J02", "Waiter", 56, "Wyoming");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into employee values("E002", "Bob", "J03", "Bartender", 56, "Wyoming");
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into employee values("E003", "Alice", "J01", "Chef", 56, "Wyoming"
+);
+Query OK, 1 row affected (0.01 sec)
+mysql> select * from employee;
++-------------+-------+----------+-----------+------------+------------+
+| employee_id | name  | job_code | job       | state_code | home_state |
++-------------+-------+----------+-----------+------------+------------+
+| E001        | Alice | J01      | Chef      |         26 | Michigan   |
+| E001        | Alice | J02      | Waiter    |         26 | Michigan   |
+| E002        | Bob   | J02      | Waiter    |         56 | Wyoming    |
+| E002        | Bob   | J03      | Bartender |         56 | Wyoming    |
+| E003        | Alice | J01      | Chef      |         56 | Wyoming    |
++-------------+-------+----------+-----------+------------+------------+
+5 rows in set (0.00 sec)
+mysql> desc people;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| name       | varchar(50) | NO   |     | NULL    |       |
+| job        | varchar(50) | NO   |     | NULL    |       |
+| home_state | varchar(50) | NO   |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+mysql> insert into people
+    -> values("Alice", "Chef", "Michigan"),("Alice", "Waiter", "Michigan"),("Bob", "Waiter", "Wyoming"), ("Bob", "Bartender", "Wyoming"), ("Alice", "Chef", "Wyoming");
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+mysql> select * from employee;
++-------------+-------+----------+-----------+------------+------------+
+| employee_id | name  | job_code | job       | state_code | home_state |
++-------------+-------+----------+-----------+------------+------------+
+| E001        | Alice | J01      | Chef      |         26 | Michigan   |
+| E001        | Alice | J02      | Waiter    |         26 | Michigan   |
+| E002        | Bob   | J02      | Waiter    |         56 | Wyoming    |
+| E002        | Bob   | J03      | Bartender |         56 | Wyoming    |
+| E003        | Alice | J01      | Chef      |         56 | Wyoming    |
++-------------+-------+----------+-----------+------------+------------+
+5 rows in set (0.00 sec)
+mysql> select * from people;
++-------+-----------+------------+
+| name  | job       | home_state |
++-------+-----------+------------+
+| Alice | Chef      | Michigan   |
+| Alice | Waiter    | Michigan   |
+| Bob   | Waiter    | Wyoming    |
+| Bob   | Bartender | Wyoming    |
+| Alice | Chef      | Wyoming    |
++-------+-----------+------------+
+5 rows in set (0.00 sec)
+mysql>
