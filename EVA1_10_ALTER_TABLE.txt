@@ -1,0 +1,268 @@
+﻿EVA1_10_ALTER_TABLE
+Last login: Mon Feb 24 19:17:32 on ttys004
+lechus@MacBook-Air-de-Lechus ~ % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 26
+Server version: 8.0.27 MySQL Community Server - GPL
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> use tbd_eva1;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+mysql> show table vehiculo;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vehiculo' at line 1
+mysql> show tablesl
+    -> ^C
+mysql> show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| actor              |
+| ciudad             |
+| cliente            |
+| country            |
+| customer           |
+| customers          |
+| employee           |
+| norma_forma1       |
+| orders             |
+| paises             |
+| people             |
+| persona            |
+| producto           |
+| professor          |
+| prueba             |
+| shirts             |
+| student            |
+| vehiculo           |
++--------------------+
+18 rows in set (0.01 sec)
+mysql> select * from vehiculo;
++-----------+------------+------+-------+----------+
+| marca     | modelo     | year | color | no_serie |
++-----------+------------+------+-------+----------+
+| Ford      | Mustang    | 1970 | Azul  | ASDFASD  |
+| Chevrolet | Corvette   | NULL | NULL  | NULL     |
+| Tesla     | S          | NULL | NULL  | NULL     |
+| Tesla     | E          | NULL | NULL  | NULL     |
+| Tesla     | X          | NULL | NULL  | NULL     |
+| Tesla     | Y          | NULL | NULL  | NULL     |
+| Tesla     | Cybertruck | NULL | NULL  | NULL     |
+| Tesla     | S          | NULL | NULL  | NULL     |
+| NULL      | NULL       | NULL | NULL  | NULL     |
++-----------+------------+------+-------+----------+
+9 rows in set (0.00 sec)
+mysql> alter table vehiculo add id int first;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc vehiculol
+    -> ^C
+mysql> desc vehiculo;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | YES  |     | NULL    |       |
+| marca    | varchar(20) | YES  |     | NULL    |       |
+| modelo   | varchar(30) | YES  |     | NULL    |       |
+| year     | int         | YES  |     | NULL    |       |
+| color    | varchar(20) | YES  |     | NULL    |       |
+| no_serie | varchar(17) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+mysql> select * from vehiculo;
++------+-----------+------------+------+-------+----------+
+| id   | marca     | modelo     | year | color | no_serie |
++------+-----------+------------+------+-------+----------+
+| NULL | Ford      | Mustang    | 1970 | Azul  | ASDFASD  |
+| NULL | Chevrolet | Corvette   | NULL | NULL  | NULL     |
+| NULL | Tesla     | S          | NULL | NULL  | NULL     |
+| NULL | Tesla     | E          | NULL | NULL  | NULL     |
+| NULL | Tesla     | X          | NULL | NULL  | NULL     |
+| NULL | Tesla     | Y          | NULL | NULL  | NULL     |
+| NULL | Tesla     | Cybertruck | NULL | NULL  | NULL     |
+| NULL | Tesla     | S          | NULL | NULL  | NULL     |
+| NULL | NULL      | NULL       | NULL | NULL  | NULL     |
++------+-----------+------------+------+-------+----------+
+9 rows in set (0.00 sec)
+mysql> alter table vehiculo drop id;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> select * from vehiculo;
++-----------+------------+------+-------+----------+
+| marca     | modelo     | year | color | no_serie |
++-----------+------------+------+-------+----------+
+| Ford      | Mustang    | 1970 | Azul  | ASDFASD  |
+| Chevrolet | Corvette   | NULL | NULL  | NULL     |
+| Tesla     | S          | NULL | NULL  | NULL     |
+| Tesla     | E          | NULL | NULL  | NULL     |
+| Tesla     | X          | NULL | NULL  | NULL     |
+| Tesla     | Y          | NULL | NULL  | NULL     |
+| Tesla     | Cybertruck | NULL | NULL  | NULL     |
+| Tesla     | S          | NULL | NULL  | NULL     |
+| NULL      | NULL       | NULL | NULL  | NULL     |
++-----------+------------+------+-------+----------+
+9 rows in set (0.00 sec)
+mysql> alter table vehiculo add id int key auto_increment first;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> select * from vehiculo;
++----+-----------+------------+------+-------+----------+
+| id | marca     | modelo     | year | color | no_serie |
++----+-----------+------------+------+-------+----------+
+|  1 | Ford      | Mustang    | 1970 | Azul  | ASDFASD  |
+|  2 | Chevrolet | Corvette   | NULL | NULL  | NULL     |
+|  3 | Tesla     | S          | NULL | NULL  | NULL     |
+|  4 | Tesla     | E          | NULL | NULL  | NULL     |
+|  5 | Tesla     | X          | NULL | NULL  | NULL     |
+|  6 | Tesla     | Y          | NULL | NULL  | NULL     |
+|  7 | Tesla     | Cybertruck | NULL | NULL  | NULL     |
+|  8 | Tesla     | S          | NULL | NULL  | NULL     |
+|  9 | NULL      | NULL       | NULL | NULL  | NULL     |
++----+-----------+------------+------+-------+----------+
+9 rows in set (0.00 sec)
+mysql> alter table vehiculo rename column id to id_vehiculo;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc vehiculo;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id_vehiculo | int         | NO   | PRI | NULL    | auto_increment |
+| marca       | varchar(20) | YES  |     | NULL    |                |
+| modelo      | varchar(30) | YES  |     | NULL    |                |
+| year        | int         | YES  |     | NULL    |                |
+| color       | varchar(20) | YES  |     | NULL    |                |
+| no_serie    | varchar(17) | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+mysql> alter table vehiculo add no_puertas int not null
+    -> ;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc vehiculo;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id_vehiculo | int         | NO   | PRI | NULL    | auto_increment |
+| marca       | varchar(20) | YES  |     | NULL    |                |
+| modelo      | varchar(30) | YES  |     | NULL    |                |
+| year        | int         | YES  |     | NULL    |                |
+| color       | varchar(20) | YES  |     | NULL    |                |
+| no_serie    | varchar(17) | YES  |     | NULL    |                |
+| no_puertas  | int         | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+mysql> select * from vehiculo;
++-------------+-----------+------------+------+-------+----------+------------+
+| id_vehiculo | marca     | modelo     | year | color | no_serie | no_puertas |
++-------------+-----------+------------+------+-------+----------+------------+
+|           1 | Ford      | Mustang    | 1970 | Azul  | ASDFASD  |          0 |
+|           2 | Chevrolet | Corvette   | NULL | NULL  | NULL     |          0 |
+|           3 | Tesla     | S          | NULL | NULL  | NULL     |          0 |
+|           4 | Tesla     | E          | NULL | NULL  | NULL     |          0 |
+|           5 | Tesla     | X          | NULL | NULL  | NULL     |          0 |
+|           6 | Tesla     | Y          | NULL | NULL  | NULL     |          0 |
+|           7 | Tesla     | Cybertruck | NULL | NULL  | NULL     |          0 |
+|           8 | Tesla     | S          | NULL | NULL  | NULL     |          0 |
+|           9 | NULL      | NULL       | NULL | NULL  | NULL     |          0 |
++-------------+-----------+------------+------+-------+----------+------------+
+9 rows in set (0.00 sec)
+mysql> alter table vehiculo 
+    -> change no_puertas puertas varchar(50) not null;
+Query OK, 9 rows affected (0.03 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+mysql> select * from vehiculo;
++-------------+-----------+------------+------+-------+----------+---------+
+| id_vehiculo | marca     | modelo     | year | color | no_serie | puertas |
++-------------+-----------+------------+------+-------+----------+---------+
+|           1 | Ford      | Mustang    | 1970 | Azul  | ASDFASD  | 0       |
+|           2 | Chevrolet | Corvette   | NULL | NULL  | NULL     | 0       |
+|           3 | Tesla     | S          | NULL | NULL  | NULL     | 0       |
+|           4 | Tesla     | E          | NULL | NULL  | NULL     | 0       |
+|           5 | Tesla     | X          | NULL | NULL  | NULL     | 0       |
+|           6 | Tesla     | Y          | NULL | NULL  | NULL     | 0       |
+|           7 | Tesla     | Cybertruck | NULL | NULL  | NULL     | 0       |
+|           8 | Tesla     | S          | NULL | NULL  | NULL     | 0       |
+|           9 | NULL      | NULL       | NULL | NULL  | NULL     | 0       |
++-------------+-----------+------------+------+-------+----------+---------+
+9 rows in set (0.00 sec)
+mysql> desc table vehiculo;
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table    | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | vehiculo | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    9 |   100.00 | NULL  |
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------+
+1 row in set, 1 warning (0.01 sec)
+mysql> desc vehiculo;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id_vehiculo | int         | NO   | PRI | NULL    | auto_increment |
+| marca       | varchar(20) | YES  |     | NULL    |                |
+| modelo      | varchar(30) | YES  |     | NULL    |                |
+| year        | int         | YES  |     | NULL    |                |
+| color       | varchar(20) | YES  |     | NULL    |                |
+| no_serie    | varchar(17) | YES  |     | NULL    |                |
+| puertas     | varchar(50) | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+mysql> select * from vehiculo;
++-------------+-----------+------------+------+-------+----------+---------+
+| id_vehiculo | marca     | modelo     | year | color | no_serie | puertas |
++-------------+-----------+------------+------+-------+----------+---------+
+|           1 | Ford      | Mustang    | 1970 | Azul  | ASDFASD  | 0       |
+|           2 | Chevrolet | Corvette   | NULL | NULL  | NULL     | 0       |
+|           3 | Tesla     | S          | NULL | NULL  | NULL     | 0       |
+|           4 | Tesla     | E          | NULL | NULL  | NULL     | 0       |
+|           5 | Tesla     | X          | NULL | NULL  | NULL     | 0       |
+|           6 | Tesla     | Y          | NULL | NULL  | NULL     | 0       |
+|           7 | Tesla     | Cybertruck | NULL | NULL  | NULL     | 0       |
+|           8 | Tesla     | S          | NULL | NULL  | NULL     | 0       |
+|           9 | NULL      | NULL       | NULL | NULL  | NULL     | 0       |
++-------------+-----------+------------+------+-------+----------+---------+
+9 rows in set (0.00 sec)
+mysql> create table datos(
+    -> id int key auto_increment,
+    -> valor check(valor >= 1000));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'check(valor >= 1000))' at line 3
+mysql> create table datos(
+    -> id int key auto_increment,
+    -> valor int check(valor >= 1000));
+Query OK, 0 rows affected (0.02 sec)
+mysql> insert into datos(valor)
+    -> values(1000), (2000), (3000);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+mysql> select * from datos;
++----+-------+
+| id | valor |
++----+-------+
+|  1 |  1000 |
+|  2 |  2000 |
+|  3 |  3000 |
++----+-------+
+3 rows in set (0.00 sec)
+mysql> insert into datos(valor)
+    -> value(5);
+ERROR 3819 (HY000): Check constraint 'datos_chk_1' is violated.
+mysql> insert into datos(valor)
+    -> value(5);
+ERROR 3819 (HY000): Check constraint 'datos_chk_1' is violated.
+mysql> insert into datos
+    -> valor
+    -> value(5);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'valor
+value(5)' at line 2
+mysql> 
+mysql> insert into datos(valor)
+    -> value(5);
+ERROR 3819 (HY000): Check constraint 'datos_chk_1' is violated.
+mysql> insert into datos(valor) valor(5);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'valor(5)' at line 1
+mysql> insert into datos(valor)
+    ->
